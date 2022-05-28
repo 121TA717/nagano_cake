@@ -8,13 +8,16 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
-  get 'homes/top'
-  resources :sessions, only: [:new, :create, :destroy]
+  namespace :admin do
+   get '/' => 'homes#top'
+
+  #resources :sessions, only: [:new, :create, :destroy]
   resources :items, only: [:index, :new, :create, :show, :edit, :destroy]
   resources :genres, only: [:index, :create, :edit, :update]
   resources :customers, only: [:index, :show, :edit, :update]
   resources :orders, only: [:show, :update]
   resources :order_details, only: [:update]
+  end
 
 
 

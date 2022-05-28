@@ -10,9 +10,11 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
+      
 
       ## Rememberable
-      t.datetime :remember_created_at
+      t.datetime :created_at
+      t.datetime :updated_at
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

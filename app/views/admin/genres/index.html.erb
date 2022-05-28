@@ -1,1 +1,9 @@
-<h1>ジャンル管理画面(一覧・追加を兼ねる)</h1>
+<h1>ジャンル一覧・追加</h1>
+
+  <%= form_with model: @genre do |f| %>
+  <div class="field">
+    <%= f.label 'ジャンル名' %>
+    <%= f.email_field :genres, autofocus: true, autocomplete: "ジャンル名" %>
+    <%= link_to '新規登録', genres_post_path, class: "btn btn-success" %>
+  </div>
+  <% end %>
