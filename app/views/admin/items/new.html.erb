@@ -1,1 +1,37 @@
-<h1>商品新規登録画面</h1>
+<h2>商品新規登録画面</h2>
+ <%= form_with model: @item, url: new_admin_item_path do |f| %>
+
+  <div class="field">
+   <%= f.label '商品画像' %>
+   <%= f.file_field :image, accept: "image/*" %>
+  </div>
+
+  <div class="field">
+   <%= f.label '商品名' %>
+   <%= f.text_field :name, autofocus: true, autocomplete: "on", placeholder:"商品名" %>
+  </div>
+
+  <div class="field">
+   <%= f.label '商品説明' %>
+   <%= f.text_area :introduction, autofocus: true, autocomplete: "off", placeholder:"ここに説明文を記述します" %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'ジャンル' %>
+    <%= f.select :name,[@genre.name], autofocus: true, autocomplete: "off", placeholder:"-- 選択して下さい --" %>
+  </div>
+
+  <div class="field">
+    <%= f.label '税抜価格' %>
+    <%= f.text_field :price, autofocus: true, autocomplete: "on", placeholder:"1000" %>円
+  </div>
+
+  <div class="field">
+    <%= f.label '販売ステータス' %>
+    <%= "販売中" "販売停止中" %>
+  </div>
+
+   <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
+    </tr>
+   <% end %>
+

@@ -1,1 +1,24 @@
 <h1>商品一覧</h1>
+
+<table class="table table-hover table-inverse">
+<thead>
+  <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+    <th>ジャンル</th>
+    <th>ステータス</th>
+  　<th colspan="3"></th>
+  </tr>
+</thead>
+
+<tbody>
+  <td><% @items.each do |item| %></td>
+  <td><%= link_to item.name, admin_item_path(item.id) %></td>
+  <td><%= link_to item.price, admin_item_path(item.id)%></td>
+  <td><%= link_to item.genre, admin_item_path(item.id) %></td>
+  <td><%= link_to is_active %></td>
+  </tr>
+      <% end %>
+</tbody>
+</table>

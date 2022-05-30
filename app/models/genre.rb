@@ -1,5 +1,4 @@
 class Genre < ApplicationRecord
-  belongs_to :admin
 
-  validates :genre, presence: true
+  validates :name, presence: true
 end
