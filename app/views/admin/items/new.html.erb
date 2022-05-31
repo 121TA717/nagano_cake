@@ -1,5 +1,5 @@
 <h2>商品新規登録画面</h2>
- <%= form_with model: @item, url: new_admin_item_path do |f| %>
+ <%= form_with model: @item, url: admin_items_path do |f| %>
 
   <div class="field">
    <%= f.label '商品画像' %>
@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label 'ジャンル' %>
-    <%= f.select :name,[@genre.name], autofocus: true, autocomplete: "off", placeholder:"-- 選択して下さい --" %>
+    <%= f.select :genre_id, options_from_collection_for_select( Genre.all, :id, :name) %>
   </div>
 
   <div class="field">
@@ -28,7 +28,10 @@
 
   <div class="field">
     <%= f.label '販売ステータス' %>
-    <%= "販売中" "販売停止中" %>
+    <%= f.label '販売中' %>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label '販売停止' %>
+    <%= f.radio_button :is_active, false %>
   </div>
 
    <td><%= f.submit '新規登録', class: "btn btn-success" %></td>

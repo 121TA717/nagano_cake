@@ -13,11 +13,11 @@
 </thead>
 
 <tbody>
-  <td><% @items.each do |item| %></td>
+  <td><% @item.each do |item| %></td>
   <td><%= link_to item.name, admin_item_path(item.id) %></td>
   <td><%= link_to item.price, admin_item_path(item.id)%></td>
-  <td><%= link_to item.genre, admin_item_path(item.id) %></td>
-  <td><%= link_to is_active %></td>
+  <td><%= link_to item.genre_id, admin_item_path(item.id) %></td>
+  <td><%= link_to item.is_active %></td>
   </tr>
       <% end %>
 </tbody>
