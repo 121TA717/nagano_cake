@@ -1,3 +1,5 @@
+<%= render '/admin/header' %>
+
 <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 <h2>管理者ログイン</h2>
 
@@ -15,7 +17,7 @@
 
 
     <div class="actions">
-    <%= link_to 'ログイン', admin_path, class: "btn btn-primary" %>
+    <%= f.submit 'ログイン', class: "btn btn-primary" %>
     </div>
   <% end %>
 

@@ -1,3 +1,5 @@
+<%= render '/admin/header' %>
+
 <h1>商品一覧</h1>
 
 <table class="table table-hover table-inverse">
@@ -13,12 +15,15 @@
 </thead>
 
 <tbody>
-  <td><% @item.each do |item| %></td>
+  <tr>
+  <% @item.each do |item| %>
+  <td><%= item.id %></td>
   <td><%= link_to item.name, admin_item_path(item.id) %></td>
-  <td><%= link_to item.price, admin_item_path(item.id)%></td>
-  <td><%= link_to item.genre_id, admin_item_path(item.id) %></td>
-  <td><%= link_to item.is_active %></td>
+  <td><%= item.price %></td>
+  <td><%= item.genre.name %></td>
+  <td><%= item.is_active %></td>
+
+  <% end %>
   </tr>
-      <% end %>
 </tbody>
 </table>

@@ -1,19 +1,36 @@
+<%= render '/admin/header' %>
+
 <div class="col-md-8 offset-md-1">
 <h1>商品詳細</h1>
-<table class="table table-hover table-inverse">
-  <tbody>
-  <tr>
-    <td>
-      <%= image_tag @item.get_image(100, 100) %>
-    <th>商品名</th>
-      <%= @item.name %><br>
-    <th>商品説明</th>
-      <%= @item.introduction %><br>
-    <th>ジャンル</th>
-      <%= @item.genre %><br>
-    <th>税込価格（税抜価格）</th>
-      <%= @item.price %><br>
-    <th>販売ステータス</th>
-      <%= @item.is_active %><br>
 
-    <td><%= link_to "編集する", edit_admin_item(@item.id), class:"btn btn-success" %></td>
+<div class="d-flex">
+  <div>
+    <%= image_tag @item.get_image(100, 150) %>
+  </div>
+
+<table class="table table-hover table-inverse">
+
+  <tr>
+    <th>商品名</th>
+    <td><%= @item.name %></td>
+  </tr>
+  <tr>
+    <th>商品説明</th>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td><%= @item.genre_id %></td>
+  </tr>
+  <tr>
+    <th>税込価格（税抜価格）</th>
+    <td><%= @item.price %></td>
+  </tr>
+  <tr>
+    <th>販売ステータス</th>
+    <td><%= @item.is_active %></td>
+  </tr>
+
+  <td><%= link_to "編集する", edit_admin_item_path(@item.id), class:"btn btn-success" %></td>
+  </table>
+</div>

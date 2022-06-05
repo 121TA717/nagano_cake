@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+   get '/top' => 'homes#top'
+  
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
    get '/' => 'homes#top'
 
   #resources :sessions, only: [:new, :create, :destroy]
-  resources :items, only: [:index, :new, :create, :show, :edit, :destroy]
+  resources :items
   resources :genres, only: [:index, :create, :edit, :update]
   resources :customers, only: [:index, :show, :edit, :update]
   resources :orders, only: [:show, :update]

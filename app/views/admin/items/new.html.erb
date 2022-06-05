@@ -1,3 +1,5 @@
+<%= render '/admin/header' %>
+
 <h2>商品新規登録画面</h2>
  <%= form_with model: @item, url: admin_items_path do |f| %>
 
@@ -13,7 +15,7 @@
 
   <div class="field">
    <%= f.label '商品説明' %>
-   <%= f.text_area :introduction, autofocus: true, autocomplete: "off", placeholder:"ここに説明文を記述します" %>
+   <%= f.text_area :introduction, autofocus: true %>
   </div>
 
   <div class="field">
