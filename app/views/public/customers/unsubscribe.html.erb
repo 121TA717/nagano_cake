@@ -1,2 +1,19 @@
 <%= render '/public/header' %>
-<h2>顧客の退会確認画面</h2>
+
+<table>
+  <div>
+    本当に退会しますか？<br>
+    <br>
+    退会すると、会員登録情報や<br>
+    これまでの購入履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。<br>
+  </div>
+
+<%= form_with model: @customer, url: customers_my_page_path, method: :PATCH do |f| %>
+
+<tr>
+   <td><%= f.submit '退会しない', class: "btn btn-primary" %></td>
+  <td><%= link_to "退会する", customers_withdraw_path, method: :PATCH, class:"btn btn-danger" %></td>
+</tr>
+ <% end %>
+</table>

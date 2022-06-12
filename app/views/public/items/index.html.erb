@@ -1,2 +1,19 @@
 <%= render '/public/header' %>
-<h2>商品一覧</h2>
+
+
+<table class="table table-active">
+  <tr>
+    <td>商品一覧</td>
+  </tr>
+</table>
+  <tbody>
+    <tr>
+      <% @item.each do |item| %>
+      <th><%= image_tag item.get_image(80, 80) %>
+        <%= item.name %>
+        <%= item.price %>
+      </th>
+
+      <% end %>
+    </tr>
+  </tbody>

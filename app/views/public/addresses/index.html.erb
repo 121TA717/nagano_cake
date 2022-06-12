@@ -1,2 +1,44 @@
 <%= render '/public/header' %>
-<h2>配送先登録/一覧画面</h2>
+
+ <h2>配送先登録/一覧画面</h2>
+
+ <%= form_with model: @address, url: public_addresses_path, method: :POST do |f| %>
+    <div class="field">
+      <tr>
+        <td>郵便番号（ハイフンなし）</td>
+        <td><%= f.text_field :postal_code, autofocus: true, autocomplete: "on", placeholder:"0000000" %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0" %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name, placeholder:"令和道子" %></td>
+        <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
+      </tr>
+    </div>
+ <% end %>
+ <%= form_with model: @address, url: public_address_path, method: :DELETE do |f| %>
+ <tbody>
+      <% @address.each do |address| %>
+      <tr>
+        <td>電話番号</td>
+        <td>住所</td>
+        <td>宛名</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><%= address.postal_code %></td>
+        <td><%= address.address %></td>
+        <td><%= address.name %></td>
+        <td><%= link_to "編集する", edit_public_address_path(address.id), class: "btn btn-primary" %></td>
+        <td><%= f.submit '削除する', class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>

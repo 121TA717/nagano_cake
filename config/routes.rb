@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-   get '/' => 'homes#top'
+   root to: 'public/homes#top'
+  get '/about' => 'public/homes#about'
+  get '/customers/my_page' => 'public/customers#show'
+  get '/customers/unsubscribe' => 'public/customers#unsubscribe'
+  patch '/customers/withdraw' => 'public/customers#withdraw'
+  delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
+  post '/orders/comfirm' => 'public/orders#/orders/comfirm'
+  get '/orders/complete' => 'public/orders#complete'
 
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -7,10 +14,11 @@ Rails.application.routes.draw do
   }
   namespace :public do
   resources :items, only: [:index, :show]
-  resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
-  resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-  resources :orders, only: [:new, :comfirm, :complete, :create, :index, :show]
+  resource :customers, only: [:edit, :update]
+  resource :cart_items, only: [:index, :update, :destroy, :create]
+  resource :orders, only: [:new, :create, :index, :show]
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  resources :registrations, only: [:new, :create]
   end
 
 

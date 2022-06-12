@@ -1,0 +1,29 @@
+  <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand"></a>
+  <% if customer_signed_in? %>
+  <div class = "d_flex">
+        <%= link_to "マイページ", customers_my_page_path, class:"btn btn-outline-secondary" %>
+
+        <%= link_to "商品一覧", public_items_path, class:"btn btn-outline-secondary" %>
+
+        <%= link_to "カート", public_cart_items_path, class:"btn btn-outline-secondary" %>
+
+        <%= link_to "ログアウト", destroy_customer_session_path,method: :delete, class:"btn btn-outline-secondary" %>
+  </div>
+  <% else %>
+
+          <div class = "d_flex">
+
+          <%= link_to "About", about_path, class:"btn btn-outline-secondary" %>
+
+          <%= link_to "商品一覧", public_items_path, class:"btn btn-outline-secondary" %>
+
+          <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
+
+          <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
+
+     </div>
+      <% end %>
+</div>
+  </nav>
