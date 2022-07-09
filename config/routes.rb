@@ -1,24 +1,27 @@
 Rails.application.routes.draw do
-   root to: 'public/homes#top'
+  root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
   get '/customers/my_page' => 'public/customers#show'
+  patch '/customers/my_page' => 'public/customers#update'
+  get '/customers/my_page/edit' => 'public/customers#edit'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw'
   delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
-  post '/orders/comfirm' => 'public/orders#/orders/comfirm'
+  post '/orders/confirm' => 'public/orders#confirm'
   get '/orders/complete' => 'public/orders#complete'
 
   devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
   }
-  namespace :public do
-  resources :items, only: [:index, :show]
-  resource :customers, only: [:edit, :update]
-  resource :cart_items, only: [:index, :update, :destroy, :create]
-  resource :orders, only: [:new, :create, :index, :show]
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  resources :registrations, only: [:new, :create]
+
+  scope module: :public do
+    resources :items, only: [:index, :show]
+    resource :customers, only: [:update]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    resources :orders, only: [:new, :create, :index, :show]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :registrations, only: [:new, :create]
   end
 
 
@@ -26,6 +29,7 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
   namespace :admin do
+    get "" => "homes#top", as: "home"
 
   #resources :sessions, only: [:new, :create, :destroy]
   resources :items

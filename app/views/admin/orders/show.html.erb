@@ -1,2 +1,90 @@
 <%= render '/admin/header' %>
-<h1>注文詳細画面(ステータス編集を兼ねる)</h1
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>注文履歴詳細</h2>
+    </div>
+
+        <div class="col-md-9">
+          <table class="table">
+              <tr>
+                <th>購入者</th>
+                  <td><%= link_to @order.customer.last_name+@order.customer.first_name, admin_home_path %></td>
+              </tr>
+              <tr>
+                <th>注文日</th>
+                <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+              </tr>
+              <tr>
+                <th>発送先</th>
+                <td><%= @order.postal_code %>
+                    <%= @order.address %><br>
+                    <%= @order.name %>
+                </td>
+              </tr>
+              <tr>
+                <th>支払方法</th>
+                <td><%= @order.payment_method_i18n %></td>
+              </tr>
+              <%= form_with model: @order, url: admin_order_path(@order.id), method: :PATCH do |f| %>
+              <tr>
+                <th>注文ステータス</th>
+                <td><%= f.select :status, [['入金待ち','wait'],['入金確認','confirmation'],['製作中','work'],['発送準備中','preparation'],['発送済み','completion']] %></td>
+                <td><%= f.submit '更新', class: "btn btn-success" %></td>
+                <td></td>
+              </tr>
+              <% end %>
+              </table>
+
+
+              </div>
+              <div class="col-md-9">
+                <table class="table">
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込み）</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th>制作ステータス</th>
+            </tr>
+            <% sum = 0 %>
+            <% @order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= (order_detail.item.price * 1.1).floor %></td>
+              <td><%= order_detail.amount %></td>
+              <td>
+                <% sum += (order_detail.item.price * 1.1).floor * order_detail.amount %>
+                <%= (order_detail.item.price * 1.1).floor * order_detail.amount %>
+              </td>
+            <%= form_with model: @order_details, url: admin_order_detail_path(order_detail.id), method: :PATCH do |f| %>
+              <td><%= f.select :making_status, [['製作不可','cannot'],['製作待ち','wait'],['製作中','work'],['製作完了','completion']]%></td>
+              <td><%= f.submit '更新', class: "btn btn-success" %></td>
+            </tr>
+            <% end %>
+            <% end %>
+
+
+                </table>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <table class="table">
+                <tr>
+                  <th>商品合計</th>
+                  <td><%= sum %>円</td>
+                </tr>
+                <tr>
+                  <th>送料</th>
+                  <td>800円</td>
+                </tr>
+                <tr>
+                  <th>請求金額合計</th>
+                  <th><%= sum + 800 %>円</th>
+                </tr>
+
+
+
+            </div>
+            </div>

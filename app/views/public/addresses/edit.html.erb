@@ -6,7 +6,7 @@
   </tr>
 </table>
 
-<%= form_with model: @address, url: public_address_path(@address), method: :PATCH do |f| %>
+<%= form_with model: @address, url: address_path(@address), method: :PATCH do |f| %>
   <div class="field">
     <tr>
     <%= f.label '郵便番号(ハイフンなし)' %>

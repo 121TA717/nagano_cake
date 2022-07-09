@@ -8,7 +8,7 @@
 
 <tr>
   <td>登録情報</td>
-  <td><%= link_to "編集する", edit_public_customers_path(@customer), class:"btn btn-success" %></td>
+  <td><%= link_to "編集する", customers_my_page_edit_path, class:"btn btn-success" %></td>
 </tr>
 
 <tr>
@@ -45,11 +45,11 @@
 
 <tr>
   <td>配送先</td>
-  <td><%= link_to "一覧を見る", public_addresses_path, class:"btn btn-primary" %></td>
+  <td><%= link_to "一覧を見る", addresses_path, class:"btn btn-primary" %></td>
 </tr>
 
 <tr>
   <td>注文履歴</td>
-  <td><%= link_to "一覧を見る", public_orders_path, class:"btn btn-primary" %></td>
+  <td><%= link_to "一覧を見る", orders_path, class:"btn btn-primary" %></td>
 </tr>
 </table>

@@ -1,7 +1,7 @@
 class Admin::HomesController < ApplicationController
   def top
-    @genre = Genre.all
-    @order = Order.all
+    @genres = Genre.all
+    @orders = Order.all
 
   end
 end
