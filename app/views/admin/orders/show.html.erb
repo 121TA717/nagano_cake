@@ -58,7 +58,7 @@
                 <% sum += (order_detail.item.price * 1.1).floor * order_detail.amount %>
                 <%= (order_detail.item.price * 1.1).floor * order_detail.amount %>
               </td>
-            <%= form_with model: @order_details, url: admin_order_detail_path(order_detail.id), method: :PATCH do |f| %>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :PATCH do |f| %>
               <td><%= f.select :making_status, [['製作不可','cannot'],['製作待ち','wait'],['製作中','work'],['製作完了','completion']]%></td>
               <td><%= f.submit '更新', class: "btn btn-success" %></td>
             </tr>
