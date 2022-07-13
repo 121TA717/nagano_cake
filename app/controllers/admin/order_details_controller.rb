@@ -10,6 +10,7 @@ class Admin::OrderDetailsController < ApplicationController
     if @order.order_details.count == @order.order_details.where(making_status: 3).count
        @order.update(status: "preparation")
     end
+    
     redirect_to admin_order_path(@order)
   end
 
